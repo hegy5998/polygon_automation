@@ -8,6 +8,7 @@ import streamlit.components.v1 as components
 
 HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; YourAppName/1.0)'}
 
+@st.cache_data(show_spinner=False)
 def fetch_osm_geojson(query):
     url = f"https://nominatim.openstreetmap.org/search?polygon_geojson=1&q={query}&format=json"
     response = requests.get(url, headers=HEADERS)
