@@ -3,4 +3,5 @@ pandas
 requests
 folium
 openpyxl
+osmnx 
 streamlit-folium
