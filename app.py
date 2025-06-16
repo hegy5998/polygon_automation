@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 import json
 import folium
 from streamlit_folium import st_folium
