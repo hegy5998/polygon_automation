@@ -34,8 +34,6 @@ def draw_map(geojson, lat, lon):
     folium.Marker([lat, lon], popup="Google Maps 點位").add_to(m)
     return m
 
-osm_geojson, display_name = fetch_osm_geojson('波蘭')
-
 st.title("🌍 Polygon 比對工具 v1")
 
 uploaded_file = st.file_uploader("請上傳包含 EngName、Latitude、Longitude 欄位的 xlsx", type=["xlsx"])
