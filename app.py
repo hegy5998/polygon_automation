@@ -8,7 +8,7 @@ import streamlit.components.v1 as components
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (compatible; YourAppName/1.0)',
-    'Referer': 'polygonautomation-cm9hhicmdvkxc6maiyqpsp.streamlit.app'
+    'Referer': 'https://polygonautomation-cm9hhicmdvkxc6maiyqpsp.streamlit.app/'
 }
 
 @st.cache_data(show_spinner=False)
