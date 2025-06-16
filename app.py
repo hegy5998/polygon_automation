@@ -33,7 +33,15 @@ st.title("🌍 Polygon 比對工具 v1")
 uploaded_file = st.file_uploader("請上傳包含 EngName、Latitude、Longitude 欄位的 CSV", type=["csv"])
 
 if uploaded_file:
-    df = pd.read_csv(uploaded_file)
+    # 讀取所有工作表成一個 dict
+    sheet_dict = pd.read_excel(uploaded_file, sheet_name=None)
+
+    # 讓使用者用 selectbox 選擇要使用的 Sheet
+    sheet_names = list(sheet_dict.keys())
+    selected_sheet = st.selectbox("📄 請選擇要載入的工作表", sheet_names)
+
+    # 讀取該 sheet 對應的 DataFrame
+    df = sheet_dict[selected_sheet]
     df = df.dropna(subset=['EngName', 'Latitude', 'Longitude'])
 
     if 'index' not in st.session_state:
