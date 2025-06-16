@@ -6,9 +6,12 @@ import time
 import folium
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
+from fake_useragent import UserAgent
+
+ua = UserAgent()
 
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (compatible; YourAppName/1.0)',
+    'User-Agent': ua.random,
     'Referer': 'https://polygonautomation-cm9hhicmdvkxc6maiyqpsp.streamlit.app/'
 }
 
