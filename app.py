@@ -7,7 +7,7 @@ from streamlit_folium import st_folium
 import streamlit.components.v1 as components
 
 HEADERS = {
-    'User-Agent': 'PolygonCheckerApp/1.0 hegy5998@gmail.com',
+    'User-Agent': 'Mozilla/5.0 (compatible; YourAppName/1.0)',
     'Referer': 'polygonautomation-cm9hhicmdvkxc6maiyqpsp.streamlit.app'
 }
 
