@@ -20,7 +20,7 @@ def fetch_osm_geojson(query):
         else:
             return None, None
     except requests.RequestException as e:
-        print(f"Error fetching data from Nominatim: {e}")
+        st.error(f"Error fetching data from Nominatim: {e}")
         return None, None
 
 def draw_map(geojson, lat, lon):
@@ -33,6 +33,8 @@ def draw_map(geojson, lat, lon):
         m.location = [lat, lon]
     folium.Marker([lat, lon], popup="Google Maps 點位").add_to(m)
     return m
+
+osm_geojson, display_name = fetch_osm_geojson('波蘭')
 
 st.title("🌍 Polygon 比對工具 v1")
 
