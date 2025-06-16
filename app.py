@@ -5,10 +5,10 @@ import json
 import folium
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
-import osmnx as ox
 
-# 關閉 SSL 驗證（不建議用於正式環境）
-ox.settings.requests_kwargs = {'verify': False}
+session = requests.Session()
+retries = Retry(total=5, backoff_factor=1, status_forcelist=[502, 503, 504])
+session.mount('https://', HTTPAdapter(max_retries=retries))
 
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0'}
 
@@ -16,7 +16,7 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 def fetch_osm_geojson(query):
     try:
         url = f"https://nominatim.openstreetmap.org/search?polygon_geojson=1&q={query}&format=json"
-        response = requests.get(url, headers=HEADERS, timeout=10)
+        response = session.get(url, headers=HEADERS, timeout=10)
         response.raise_for_status()  # 若非200會丟例外
         data = response.json()
         if data and 'geojson' in data[0]:
