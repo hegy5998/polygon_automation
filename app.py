@@ -11,9 +11,15 @@ HEADERS = {
     'Referer': 'https://polygonautomation-cm9hhicmdvkxc6maiyqpsp.streamlit.app/'
 }
 
-@st.cache_data(show_spinner=False)
+# 控制請求頻率：紀錄上次請求時間
+if 'last_request_time' not in st.session_state:
+    st.session_state.last_request_time = 0
+
 def fetch_osm_geojson(query):
-    st.error(f"fetch_osm_geojson")
+    # 計算時間間隔，若不足1秒則等待
+    elapsed = time.time() - st.session_state.last_request_time
+    if elapsed < 1:
+        time.sleep(1 - elapsed)
     try:
         url = f"https://nominatim.openstreetmap.org/search?polygon_geojson=1&q={query}&format=json"
         response = requests.get(url, headers=HEADERS, timeout=10)
