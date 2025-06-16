@@ -10,6 +10,7 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 
 @st.cache_data(show_spinner=False)
 def fetch_osm_geojson(query):
+    st.error(f"fetch_osm_geojson")
     try:
         url = f"https://nominatim.openstreetmap.org/search?polygon_geojson=1&q={query}&format=json"
         response = requests.get(url, headers=HEADERS, timeout=10)
