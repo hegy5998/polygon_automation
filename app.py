@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import json
+import time
 import folium
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
