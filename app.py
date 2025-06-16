@@ -6,7 +6,10 @@ import folium
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
 
-HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0'}
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0',
+    'Referer': 'polygonautomation-cm9hhicmdvkxc6maiyqpsp.streamlit.app'
+}
 
 @st.cache_data(show_spinner=False)
 def fetch_osm_geojson(query):
