@@ -23,7 +23,7 @@ def fetch_osm_geojson(query):
         time.sleep(1 - elapsed)
     try:
         url = f"https://nominatim.openstreetmap.org/search?polygon_geojson=1&q={query}&format=json"
-        response = requests.get(url, headers=HEADERS, timeout=10)
+        response = requests.get(url, headers=HEADERS)
         response.raise_for_status()  # 若非200會丟例外
         data = response.json()
         if data and 'geojson' in data[0]:
