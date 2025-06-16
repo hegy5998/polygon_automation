@@ -46,6 +46,8 @@ def draw_map(geojson, lat, lon):
     return m
 
 st.title("🌍 Polygon 比對工具 v1")
+# 顯示 attribution
+st.markdown("📌 **資料來源**： [OpenStreetMap contributors](https://www.openstreetmap.org)（ODbL 授權）")
 
 uploaded_file = st.file_uploader("請上傳包含 EngName、Latitude、Longitude 欄位的 xlsx", type=["xlsx"])
 
