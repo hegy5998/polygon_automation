@@ -12,7 +12,7 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; YourAppName/1.0)'}
 def fetch_osm_geojson(query):
     try:
         url = f"https://nominatim.openstreetmap.org/search?polygon_geojson=1&q={query}&format=json"
-        response = requests.get(url, headers=HEADERS, params=params, timeout=10)
+        response = requests.get(url, headers=HEADERS, timeout=10)
         response.raise_for_status()  # 若非200會丟例外
         data = response.json()
         if data and 'geojson' in data[0]:
