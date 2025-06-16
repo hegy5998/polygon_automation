@@ -10,13 +10,18 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; YourAppName/1.0)'}
 
 @st.cache_data(show_spinner=False)
 def fetch_osm_geojson(query):
-    url = f"https://nominatim.openstreetmap.org/search?polygon_geojson=1&q={query}&format=json"
-    response = requests.get(url, headers=HEADERS)
-    if response.status_code == 200:
+    try:
+        url = f"https://nominatim.openstreetmap.org/search?polygon_geojson=1&q={query}&format=json"
+        response = requests.get(url, headers=HEADERS, params=params, timeout=10)
+        response.raise_for_status()  # 若非200會丟例外
         data = response.json()
         if data and 'geojson' in data[0]:
             return data[0]['geojson'], data[0].get('display_name', '')
-    return None, None
+        else:
+            return None, None
+    except requests.RequestException as e:
+        print(f"Error fetching data from Nominatim: {e}")
+        return None, None
 
 def draw_map(geojson, lat, lon):
     m = folium.Map(zoom_start=13)
