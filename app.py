@@ -6,7 +6,10 @@ import folium
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
 
-HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; YourAppName/1.0)'}
+HEADERS = {
+    'User-Agent': ua.random,
+    'Referer': 'https://polygonautomation-cm9hhicmdvkxc6maiyqpsp.streamlit.app/'
+}
 
 def fetch_osm_geojson(query):
     url = f"https://nominatim.openstreetmap.org/search?polygon_geojson=1&q={query}&format=json"
